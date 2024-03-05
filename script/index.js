@@ -6,10 +6,11 @@ const appendMessage = async()=>{
     showDisplay(retro);
 }
 
-const showDisplay = retros => {
+const showDisplay = (retros) => {
     const retroContainer = document.getElementById('message_append');
+    let i = 0;
     retros.forEach(retro =>{
-        //console.log(retro);
+        console.log(retros);
         // create a div
         const retroCard = document.createElement('div');
         retroCard.classList = `flex p-2 gap-5 rounded-2xl w-full border-2 border-[#797DFC] my-2`;
@@ -17,20 +18,19 @@ const showDisplay = retros => {
         <div class="flex">
         <!-- White box -->
                 <div class="indicator p-2">
-                    <span class="indicator-item badge badge-secondary"></span> 
-                    <div class="grid w-28 h-28 bg-base-300 place-items-center rounded-lg">content</div>
+                    <span class="indicator-item badge badge-secondary">${retros[i].isActive}</span> 
+                    <div class="grid w-28 h-28 bg-base-300 place-items-center rounded-lg"><figure><img src=".${retros[i].image}"></figure></div>
                   </div>
-            <!-- main content of left side -->
                 <div class="p-2 bg-violet-50 rounded-2xl">
                 
 
                     <div class="flex gap-5 py-1">
-                      <p># Music</p>
-                      <p>Author : Awlad Hossain</p>
+                      <p># ${retros[i].category}</p>
+                      <p>Author : ${retros[i].author.name}</p>
                     </div>
                     <div class="py-2 px-3">
-                      <h2 class="mulish_font py-2">10 Kids Unaware of Their Halloween Costume</h2>
-                      <p>It’s one thing to subject yourself to ha Halloween costume mishap because, hey that’s your prerogative</p>
+                      <h2 class="mulish_font py-2">${retros[i].title}</h2>
+                      <p>${retros[i].description}</p>
                     </div>
                     <!-- icon add -->
                     <div class="flex justify-between border-t-2 border-dotted py-3">
@@ -40,7 +40,7 @@ const showDisplay = retros => {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                           </svg>
-                          <p>550</p>
+                          <p>${retros[i].comment_count}</p>
                           </div> 
 
                           <div class="flex gap-2">
@@ -48,14 +48,14 @@ const showDisplay = retros => {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                           </svg>
-                          <p>1668</p>
+                          <p>${retros[i].view_count}</p>
                           </div>
 
                           <div class="flex gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>  
-                            <p>5 min</p>                           
+                            <p>${retros[i].posted_time} min</p>                           
                           </div>
                       
                     </div>
@@ -73,6 +73,7 @@ const showDisplay = retros => {
         </div>
     </div>`;
     retroContainer.appendChild(retroCard);
+    i++;
     })
     
 }
@@ -81,6 +82,8 @@ const showDisplay = retros => {
 
 
 // let's discus button function
+
+
 // const addKids = kids =>{
 //     const kidsButton = document.getElementById('add_kids_comment');
     
@@ -110,6 +113,8 @@ const showDisplay = retros => {
 
 
 // latest post section er function
+
+
 const latestPost = async()=>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
@@ -121,7 +126,7 @@ const showlatestPost = (posts) =>{
     //console.log(posts)
     //console.log(posts.title)
     const latestpostContainer = document.getElementById('latest_post_container');
-    let i =  0;
+    let i = 0;
     posts.forEach(latest =>{
        // console.log(posts[i].title)
         
