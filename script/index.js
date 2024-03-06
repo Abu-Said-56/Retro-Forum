@@ -6,11 +6,6 @@ const appendMessage = async(searchtext)=>{
     showDisplay(retro);
     //titleAppend(retro);
 
-    const toggleSpinner = document.getElementById('loading_2sec');
-    toggleSpinner.classList.remove('hidden')
-    setTimeout(()=>{
-    loadData(inputText);
-    },2000);
 }
 
 const showDisplay = (retros) => {
@@ -20,7 +15,7 @@ const showDisplay = (retros) => {
     let i = 0;
     retros.forEach(retro =>{
         //console.log(retros);
-        // create a div
+        
         const retroCard = document.createElement('div');
         retroCard.classList = `flex p-2 gap-5 rounded-2xl w-full border-2 border-[#797DFC] my-2`;
         retroCard.innerHTML = `
@@ -79,8 +74,7 @@ const showDisplay = (retros) => {
 
 
             </div>
-        </div>
-    </div>`;
+        </div></div>`;
     retroContainer.appendChild(retroCard);
     i++;
     })
@@ -96,10 +90,10 @@ const titleAppend = async(view)=>{
 }
 
 const titleAppendfunc = (view,retro) =>{
-    console.log('clicked : ',view)
+    //console.log('clicked : ',view)
     const currentPost = retro.find(({view_count}) => view_count === view);
 
-    console.log('current : ',currentPost)
+    //console.log('current : ',currentPost)
     
     const titleContainer =document.getElementById('title_append_containner');
     const newDiv = document.createElement('div');
@@ -122,12 +116,12 @@ const titleAppendfunc = (view,retro) =>{
 
 
   const countElement = document.getElementById('count_number');
-  const counttext = countElement.innerText;
-  const countNumber = parseInt(counttext)
-  const countPost = countNumber + 1;
-  countElement.innerText = countPost;
+  const countText = countElement.innerText;
+  const countNum = parseInt(countText)
+  const countTitle = countNum + 1;
+  countElement.innerText = countTitle;
 
-  countElement.appendChild(countPost);
+  countElement.appendChild(countTitle);
 
 };
 
