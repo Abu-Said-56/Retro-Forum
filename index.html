@@ -22,7 +22,7 @@
    <header class="container mx-auto mt-10 bg-slate-100 rounded-lg p-7 mb-10">
     <div class="flex justify-between">
         <div>
-            <h3 class="text-4xl mulish_font">ReTro</h3>
+            <h3 class="text-4xl mulish_font">Novel Exchange</h3>
         </div>
               
             <div class="flex items-center gap-7">
@@ -62,16 +62,16 @@
    <main>
     <!-- banner section -->
     <section class="container mx-auto">
-        <div class="px-10 py-20 rounded-3xl bg-slate-900 w-auto" style="background-image: url(images/images/bgbanner.png);">
+        <div class="px-10 py-20 rounded-3xl bg-slate-900 bg-cover" style="background-image: url(images/images/bgbanner.png);">
             
             <!-- <div class="hero-content text-neutral-content"></div> -->
-              <div class="flex justify-center gap-20">
+              <div class="flex justify-center gap-10">
                 <div class="w-[50%]">
-                    <h1 class="text-5xl text-white">Welcome to the <br><span class="text-indigo-600">ReTro</span> Forum</h1>
+                    <h1 class="text-5xl text-white">Welcome to the <br><span class="text-indigo-600">Novel Exchange</span></h1>
                     <p class="text-white py-2">Share Your Favorite Opinion and win wp <br>forum coffee mug!</p>
                     <div class="relative">
-                        <input class="w-full py-3 px-10 rounded-full relative" type="text" placeholder="Search here anything!">
-                        <button onclick="appendMessage()" class=" bg-[#797DFC] rounded-full border-none p-2 px-4 absolute right-3 top-1">Get Started</button> 
+                        <input id="catagory_search" class="w-[90%] py-3 px-10 rounded-full relative" type="text" placeholder="Search here anything!">
+                        <button onclick="catacorySearch()" class=" bg-[#797DFC] rounded-full border-none p-2 px-4 absolute right-16 top-1">Get Started</button> 
                     </div>                   
                     </div>
 
@@ -82,7 +82,6 @@
                         <div class="flex justify-between py-2"><p>Replies</p><p>01</p></div>
                     </div>
                   </div>
-                  
             </div>
     </section>
         <!--Lets Discus sectiion -->
@@ -102,7 +101,7 @@
                             <div class="indicator p-2">
                                 <span class="indicator-item badge badge-secondary"></span> 
                                 <div class="grid w-28 h-28 bg-base-300 place-items-center rounded-lg">
-                                   <figure><img src="images/images/Frame.png"></figure>
+                                   <figure><img src=""></figure>
                                 </div>
                               </div>
                         <!-- main content of left side -->
@@ -162,8 +161,10 @@
             <div class=" w-auto p-5 bg-slate-100 rounded-2xl">
                 <div class="flex justify-between py-3">
                     <p class="mulish_font">Title</p>
-                    <div class="flex gap-2 "><img src="images/images/Frame.png"><p>Mark as read (<span>0</span>)</p></div>
+                    <div class="flex gap-2 "><img src="images/images/Frame.png"><p>Mark as read (<span id="count_number">0</span>)</p></div>
                 </div>
+
+                <div id="title_append_containner">
                 <div class="flex justify-between py-3 gap-3 p-2 bg-white rounded-xl">
                     <div>
                         <h3 class="mulish_font">10 Kids Unaware of Their Halloween Costume</h3>
@@ -176,6 +177,8 @@
                           <span>1568</span>
                     </div>                  
                 </div>
+                </div>
+
             </div>
 
         </div>
@@ -186,7 +189,7 @@
             <div class="py-10 px-5">
                 <h2 class="text-3xl mulish_font py-3 text-white">Join Our Forum</h2>
                 <p class="text-gray-300 py-3 pb-5">Share your favorite opinion and win and wp forum coffee mug! Yes, you can <br> run unit tests and view the results directly within the app.</p>
-                <button class="btn bg-[#797DFC] rounded-full px-9 border-none text-white text-2xl">Registered Now</button>         
+                <button class="btn bg-[#797DFC] rounded-full px-9 border-none text-white text-lg">Registered Now</button>         
             </div>
             
             <div>
@@ -272,7 +275,7 @@
    </main>
    <footer class="mt-10 py-10 bg-[#F4F8FB]">
     <div class="text-center">
-        <h3 class="mulish_font text-3xl py-2">ReTro</h3>
+        <h3 class="mulish_font text-4xl py-2">Novel Exchange</h3>
         <p class="text-slate-600">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots <br>in a piece of classical Latin literature from 45 BC</p>
     </div>
     <!-- Icon div -->

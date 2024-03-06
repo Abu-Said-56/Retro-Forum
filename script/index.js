@@ -1,25 +1,28 @@
 // get started button function
-const appendMessage = async()=>{
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+const appendMessage = async(searchtext)=>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchtext}`);
     const data = await res.json();
     const retro = data.posts;
     showDisplay(retro);
+    //titleAppend(retro);
 }
 
 const showDisplay = (retros) => {
     const retroContainer = document.getElementById('message_append');
+    retroContainer.innerText = '';
+    console.log(retros)
     let i = 0;
     retros.forEach(retro =>{
-        console.log(retros);
+        //console.log(retros);
         // create a div
         const retroCard = document.createElement('div');
         retroCard.classList = `flex p-2 gap-5 rounded-2xl w-full border-2 border-[#797DFC] my-2`;
         retroCard.innerHTML = `
         <div class="flex">
         <!-- White box -->
-                <div class="indicator p-2">
-                    <span class="indicator-item badge badge-secondary">${retros[i].isActive}</span> 
-                    <div class="grid w-28 h-28 bg-base-300 place-items-center rounded-lg"><figure><img src=".${retros[i].image}"></figure></div>
+                <div class="indicator py-2">
+                <span class="indicator-item badge ${retros[i]?.isActive?"bg-green-900":"bg-red-700"}"></span>
+                    <div class="grid w-28 h-28 bg-base-300 place-items-center rounded-lg"><figure><img src="${retros[i].image}"></figure></div>
                   </div>
                 <div class="p-2 bg-violet-50 rounded-2xl">
                 
@@ -60,7 +63,7 @@ const showDisplay = (retros) => {
                       
                     </div>
                       <div class="flex justify-end p-1 ">
-                        <button class="btn bg-[#3bbd92] rounded-full">
+                        <button onclick="titleAppend(${retros[i].view_count})" class="btn bg-[#3bbd92] rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
                           </svg>
@@ -77,43 +80,64 @@ const showDisplay = (retros) => {
     })
     
 }
+//title append
+const titleAppend = async(view)=>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?`);
+    const data = await res.json();
+    const retro = data.posts;
+    titleAppendfunc(view,retro)
+}
 
+const titleAppendfunc = (view,retro) =>{
+    console.log('clicked : ',view)
+    const currentPost = retro.find(({view_count}) => view_count === view);
 
-
-
-// let's discus button function
-
-
-// const addKids = kids =>{
-//     const kidsButton = document.getElementById('add_kids_comment');
+    console.log('current : ',currentPost)
     
-//     kids.forEach(update =>{
-//         const kidsDiv = document.createElement('div');
-//         kidsDiv.classList =`flex justify-between py-3 gap-3 p-2 bg-white rounded-xl`;
-//         kidsDiv.innerHTML =`
-//         <div>
-//         <div>
-//             <h3 class="mulish_font">10 Kids Unaware of Their Halloween Costume</h3>
-//         </div>
-//         <div class="flex justify-between gap-3">
-//             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"          stroke="currentColor" class="w-6 h-6">
-//                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-//                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-//               </svg>
-//               <span>1568</span>
-//         </div>                  
-//     </div>
-//         `;
-//     })
+    const titleContainer =document.getElementById('title_append_containner');
+    const newDiv = document.createElement('div');
+    newDiv.classList = `flex justify-between py-3 gap-3 p-2 bg-white rounded-xl my-2 shadow-lg`;
+    newDiv.innerHTML = `
+    <div>
+    <h3 class="mulish_font">${currentPost.title}</h3>
+</div>
+<div class="flex justify-between gap-3">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"          stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+      </svg>
+      <span>${currentPost.view_count}</span>
+</div>
     
-// }
+    `;
+    titleContainer.appendChild(newDiv);
 
 
+
+
+  const countElement = document.getElementById('count_number');
+  const counttext = countElement.innerText;
+  const countNumber = parseInt(counttext)
+  const countPost = countNumber + 1;
+  countElement.innerText = countPost;
+
+  countElement.appendChild(countPost);
+};
+
+
+
+
+// Catagory search
+const catacorySearch = () =>{
+    const searchField = document.getElementById('catagory_search');
+    const searchText = searchField.value;
+    console.log(searchText);
+    appendMessage(searchText);
+}
 
 
 
 // latest post section er function
-
 
 const latestPost = async()=>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
