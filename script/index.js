@@ -5,6 +5,12 @@ const appendMessage = async(searchtext)=>{
     const retro = data.posts;
     showDisplay(retro);
     //titleAppend(retro);
+
+    const toggleSpinner = document.getElementById('loading_2sec');
+    toggleSpinner.classList.remove('hidden')
+    setTimeout(()=>{
+    loadData(inputText);
+    },2000);
 }
 
 const showDisplay = (retros) => {
@@ -85,7 +91,8 @@ const titleAppend = async(view)=>{
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?`);
     const data = await res.json();
     const retro = data.posts;
-    titleAppendfunc(view,retro)
+    titleAppendfunc(view,retro);
+
 }
 
 const titleAppendfunc = (view,retro) =>{
@@ -114,7 +121,6 @@ const titleAppendfunc = (view,retro) =>{
 
 
 
-
   const countElement = document.getElementById('count_number');
   const counttext = countElement.innerText;
   const countNumber = parseInt(counttext)
@@ -122,6 +128,7 @@ const titleAppendfunc = (view,retro) =>{
   countElement.innerText = countPost;
 
   countElement.appendChild(countPost);
+
 };
 
 
@@ -133,6 +140,8 @@ const catacorySearch = () =>{
     const searchText = searchField.value;
     console.log(searchText);
     appendMessage(searchText);
+
+    
 }
 
 
